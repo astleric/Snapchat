@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapchat Chat Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #FFFC00;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .snapchat-box {
+            width: 340px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .chat {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-top: 10px;
+        }
+
+        .message {
+            background: #FFD700;
+            color: black;
+            padding: 10px 14px;
+            border-radius: 18px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            max-width: 75%;
+        }
+
+        .reply {
+            background: #E5E5E5;
+            align-self: flex-start;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        button {
+            background: #FFD700;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: black;
+            color: #FFFC00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="snapchat-box">
+        <div class="chat">
+            <div class="message">Hello!!</div>
+            <div class="message reply">What has happened to you?</div>
+
+            <form onsubmit="showResponse(event)">
+                <input type="text" id="userResponse" placeholder="Type your reply...">
+                <button type="submit">Send</button>
+            </form>
+
+            <div id="replyBox" style="display: none;">
+                <div class="message reply">Ok, so you don't want me to be your Snap friend...</div>
+                <div class="message reply">Ok, that's fine.</div>
+                <div class="message reply">Bye.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showResponse(event) {
+            event.preventDefault();
+            document.querySelector("form").style.display = "none";
+            document.getElementById("replyBox").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
