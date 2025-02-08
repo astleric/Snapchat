@@ -3,122 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapchat Chat Form</title>
+    <title>YouTube Clone</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #FFFC00;
-            flex-direction: column;
-            text-align: center;
+            background-color: #f9f9f9;
+            color: #000;
         }
 
-        .snapchat-box {
-            width: 340px;
+        /* HEADER */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             background: #fff;
-            border-radius: 20px;
-            padding: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .chat {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            padding-top: 10px;
-        }
-
-        .message {
-            background: #FFD700;
-            color: black;
-            padding: 10px 14px;
-            border-radius: 18px;
-            margin-bottom: 8px;
-            font-size: 16px;
-            max-width: 75%;
-        }
-
-        .reply {
-            background: #E5E5E5;
-            align-self: flex-start;
-        }
-
-        form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        input[type="text"] {
-            width: 90%;
-            padding: 10px;
-            border-radius: 15px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        button {
-            background: #FFD700;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
+        .logo {
+            font-size: 22px;
             font-weight: bold;
-            color: black;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-top: 10px;
+            color: red;
         }
 
-        button:hover {
-            background: black;
-            color: #FFFC00;
+        .search-box {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .search-box input {
+            width: 60%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .search-box button {
+            margin-left: 5px;
+            padding: 8px 12px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .icons span {
+            margin: 0 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: white;
+            height: 100vh;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            overflow-y: auto;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sidebar li:hover {
+            background: #ddd;
+        }
+
+        .videos {
+            margin-left: 270px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .video {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .video:hover {
+            transform: scale(1.05);
+        }
+
+        .video img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .video h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .dark-mode {
+            background-color: #181818;
+            color: #fff;
+        }
+
+        .dark-mode .sidebar,
+        .dark-mode .video {
+            background: #202020;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-
-    <div class="snapchat-box">
-        <div class="chat">
-            <div class="message">Hello!!</div>
-            <div class="message reply">What has happened to you?</div>
-
-            <form onsubmit="showResponse(event)">
-                <input type="text" id="userResponse" placeholder="Type your reply...">
-                <button type="submit">Send</button>
-            </form>
-
-            <div id="replyBox" style="display: none;">
-                <div class="message reply">Ok, so you don't want me to be your Snap friend...</div>
-                <div class="message reply">Ok, that's fine.</div>
-                <div class="message reply">Bye.</div>
-            </div>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">▶ YouTube</div>
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <button>🔍</button>
         </div>
-    </div>
+        <div class="icons">
+            <span id="toggle-sidebar">📏</span>
+            <span id="toggle-dark-mode">🌙</span>
+            <span>🔔</span>
+            <span>👤</span>
+        </div>
+    </header>
 
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <ul>
+            <li>🏠 Home</li>
+            <li>🔥 Trending</li>
+            <li>📺 Subscriptions</li>
+        </ul>
+    </aside>
+
+    <!-- VIDEO SECTION -->
+    <main class="videos">
+        <div class="video">
+            <img src="https://via.placeholder.com/320x180" alt="Video Thumbnail">
+            <h3>How to Code a YouTube Clone</h3>
+        </div>
+        <div class="video">
+            <img src="https://via.placeholder.com/320x180" alt="Video Thumbnail">
+            <h3>Web Development in 2025</h3>
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT -->
     <script>
-        function showResponse(event) {
-            event.preventDefault();
-            document.querySelector("form").style.display = "none";
-            document.getElementById("replyBox").style.display = "block";
-        }
-    </script>
+        document.getElementById("toggle-dark-mode").addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+        });
 
+        document.getElementById("toggle-sidebar").addEventListener("click", function () {
+            document.querySelector(".sidebar").classList.toggle("collapsed");
+            document.querySelector(".videos").style.marginLeft = document.querySelector(".sidebar").classList.contains("collapsed") ? "90px" : "270px";
+        });
+    </script>
 </body>
 </html>
